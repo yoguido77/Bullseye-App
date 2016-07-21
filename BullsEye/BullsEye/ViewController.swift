@@ -35,8 +35,25 @@ class ViewController: UIViewController {
         //constant below now uses abs()function to get absolute value
         
         let difference = abs(targetValue - currentValue)
-        let points = 100 - difference
-        score = score + points
+        var points = 100 - difference
+        
+        
+        var title: String
+        if difference == 0 {
+            title = "Perfect Score!"
+            points += 100
+        } else if difference < 5 {
+            title = "You almost had it!"
+            if difference == 1 {
+                points += 50 }
+        } else if difference < 10 {
+            title = "Pretty good!"
+        } else {
+            title = "Not even close..."
+        }
+        
+        score += points
+        
        
         //var difference = currentValue - targetValue
       //  if difference < 0 {
@@ -55,7 +72,7 @@ class ViewController: UIViewController {
                    // + "\nThe target value is: \(targetValue)"
                     //+ "\nThe difference is \(difference)"
         
-        let alert = UIAlertController(title: "Hello World", message: message, preferredStyle: .Alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         
